@@ -12,6 +12,7 @@ function Services() {
     fetchPopular();
   }, []);
 
+
   const fetchPopular = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/popular?api_key=3fa51e31e7836db85d22f7b99d59ab4d&language=en-US&page=1"
@@ -32,7 +33,11 @@ function Services() {
       <motion.div layout className="popular-movies">
         <AnimatePresence>
           {filtered.map((movie) => {
-            return <ShowCard key={movieData.id} movie={movie} />;
+            return (
+              <div>
+                <ShowCard key={movieData.id} movie={movie}/>
+              </div>
+            );
           })}
         </AnimatePresence>
       </motion.div>

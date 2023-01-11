@@ -14,7 +14,7 @@ const Help = () => {
         <small>Selected</small>
       </li>
       <li>
-        <Seat occupeid />
+        <Seat occupied />
         <small>Occupeid</small>
       </li>
     </ul>

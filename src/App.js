@@ -6,7 +6,7 @@ import Services from './components/Pages/Services';
 import Products from './components/Pages/Products';
 import SignUp from './components/Pages/SignUp';
 import TicketBooking from './components/ticketBook/ticketBooking/TicketBooking';
-
+import Cart from './components/Cart/Cart'
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
         <Route path="/products" element={<Products/>}/>
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="/ticket-booking" element={<TicketBooking />}/>
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>
     </>

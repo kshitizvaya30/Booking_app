@@ -6,8 +6,8 @@ import './TicketBooking.css';
 
 const Seats = () => {
   const seats = [];
-  const row = 6;
-  const column = 8;
+  const row = 10;
+  const column = 15;
   let { addSeat, removeSeat } = useContext(SeatContext);
   const getSeatsId = JSON.parse(localStorage.getItem('seatsId'));
 
@@ -15,13 +15,13 @@ const Seats = () => {
     (e) => {
       if (
         e.target.classList.contains('selected') &&
-        !e.target.classList.contains('occupeid')
+        !e.target.classList.contains('occupied')
       ) {
         e.target.classList.remove('selected');
         removeSeat(e.target.dataset.id);
       } else if (
         !e.target.classList.contains('selected') &&
-        !e.target.classList.contains('occupeid')
+        !e.target.classList.contains('occupied')
       ) {
         e.target.classList.add('selected');
         addSeat(e.target.dataset.id);
@@ -30,7 +30,7 @@ const Seats = () => {
     [addSeat, removeSeat]
   );
 
-  const occupeidfunc = (i, j) => {
+  const occupiedfunc = (i, j) => {
     if (i === 1 && j === 2) {
       return true;
     } else if (i === 1 && j === 3) {
@@ -52,8 +52,8 @@ const Seats = () => {
 
   const selectedfunc = (i, j) => {
     if (getSeatsId) {
-      for (let item of getSeatsId) {
-        if (+item === i * column + j + 1) {
+      for(let i = 0; i < getSeatsId.length; i++) {
+        if(getSeatsId[i] === (i * column + j + 1)){
           return true;
         }
       }
@@ -68,7 +68,7 @@ const Seats = () => {
         <Seat
           id={i * column + j + 1}
           key={i * column + j + 1}
-          occupeid={occupeidfunc(i, j)}
+          occupied={occupiedfunc(i, j)}
           selected={selectedfunc(i, j)}
           onclick={onclickHandle}
         />

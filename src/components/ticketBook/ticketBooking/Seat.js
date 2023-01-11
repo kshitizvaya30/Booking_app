@@ -2,10 +2,10 @@ import React from 'react';
 import './TicketBooking.css'
 
 
-const Seat = ({ id, occupeid, selected, onclick }) => {
+const Seat = ({ id, occupied, selected, onclick }) => {
   const classes = ['seat'];
-  if (occupeid) {
-    classes.push('occupeid');
+  if (occupied) {
+    classes.push('occupied');
   } else if (selected) {
     classes.push('selected');
   }

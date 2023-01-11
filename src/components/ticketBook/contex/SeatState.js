@@ -1,15 +1,15 @@
-import React, { useReducer } from 'react';
-import SeatContext from './seatContext';
-import seatReducer from './seatReducer';
-import { ADD_SEAT, REMOVE_SEAT, GET_DATA } from './types';
+import React, { useReducer } from "react";
+import SeatContext from "./seatContext";
+import seatReducer from "./seatReducer";
+import { ADD_SEAT, REMOVE_SEAT, GET_DATA } from "./types";
 
 const SeatState = ({ children }) => {
   const initialState = {
     movies: [
-      { id: 0, name: 'Interstaller', price: 10 },
-      { id: 1, name: 'Scare Face', price: 15 },
-      { id: 2, name: 'Good Fellas', price: 8 },
-      { id: 3, name: 'God Father', price: 20 },
+      { id: 0, name: "Interstaller", price: 10 },
+      { id: 1, name: "Scare Face", price: 15 },
+      { id: 2, name: "Good Fellas", price: 8 },
+      { id: 3, name: "God Father", price: 20 },
     ],
     seatsId: [],
 
@@ -26,12 +26,29 @@ const SeatState = ({ children }) => {
   };
 
   const saveMovie = (movie) => {
-    localStorage.setItem('selectedMovie', JSON.stringify(movie));
+    localStorage.setItem("selectedMovie", JSON.stringify(movie));
   };
 
   const getData = () => {
     dispatch({ type: GET_DATA });
   };
+
+  const finalCart = () => {
+    var finalData = JSON.parse(localStorage.getItem("checkout") || "[]");
+    const checkoutObj = {
+      movieName: JSON.parse(localStorage.getItem("selectedMovie")),
+      seatsSelected: JSON.parse(localStorage.getItem("seatsId")),
+    };
+    finalData.push(checkoutObj);
+    localStorage.setItem("checkout", JSON.stringify(finalData));
+    localStorage.removeItem("selectedMovie");
+    localStorage.removeItem("seatsId");
+  };
+
+  const checkoutData = () => {
+    const data = JSON.parse(localStorage.getItem("checkout") || "[]");
+    return data;
+  }
 
   return (
     <SeatContext.Provider
@@ -43,7 +60,10 @@ const SeatState = ({ children }) => {
         removeSeat,
         saveMovie,
         getData,
-      }}>
+        finalCart,
+        checkoutData,
+      }}
+    >
       {children}
     </SeatContext.Provider>
   );
