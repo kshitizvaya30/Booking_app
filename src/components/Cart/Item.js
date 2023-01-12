@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 
 function Item({ item }) {
   const [val, setVal] = useState({});
+  const [seatData, setSeatData] = useState({});
 
   useEffect(() => {
-    let x = JSON.parse(item.movieName);
-    setVal(x);
-    console.log(x.price);
+    setVal(item.movieName);
+    setSeatData(item.seatsSelected);
   }, []);
 
   return (
@@ -20,7 +20,7 @@ function Item({ item }) {
           <p>Show Timings</p>
         </div>
         <div className="price">
-          <h3>{val.price}</h3>
+          <h3>{item.totalPrice}</h3>
         </div>
       </div>
       <hr />

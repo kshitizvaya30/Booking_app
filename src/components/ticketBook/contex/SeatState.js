@@ -1,20 +1,23 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import SeatContext from "./seatContext";
 import seatReducer from "./seatReducer";
+import Axios from "axios";
+
 import { ADD_SEAT, REMOVE_SEAT, GET_DATA } from "./types";
 
 const SeatState = ({ children }) => {
   const initialState = {
-    movies: [
-      { id: 0, name: "Interstaller", price: 10 },
-      { id: 1, name: "Scare Face", price: 15 },
-      { id: 2, name: "Good Fellas", price: 8 },
-      { id: 3, name: "God Father", price: 20 },
-    ],
-    seatsId: [],
-
+    movies: [""],
+    seatsId: [""],
     selectedMovie: {},
   };
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/api/getShowData").then((response) => {
+      // console.log(response.data);
+      initialState.movies = response.data;
+    });
+  }, []);
 
   const [state, dispatch] = useReducer(seatReducer, initialState);
 
@@ -35,11 +38,16 @@ const SeatState = ({ children }) => {
 
   const finalCart = () => {
     var finalData = JSON.parse(localStorage.getItem("checkout") || "[]");
+    // console.log(JSON.parse(localStorage.getItem("selectedMovie")).price);
+    // console.log(JSON.parse(localStorage.getItem("seatsId")).length);
+    let totalPrice = JSON.parse(localStorage.getItem("selectedMovie")).price * JSON.parse(localStorage.getItem("seatsId")).length;
     const checkoutObj = {
       movieName: JSON.parse(localStorage.getItem("selectedMovie")),
       seatsSelected: JSON.parse(localStorage.getItem("seatsId")),
+      totalPrice: totalPrice
     };
     finalData.push(checkoutObj);
+    console.log(checkoutObj);
     localStorage.setItem("checkout", JSON.stringify(finalData));
     localStorage.removeItem("selectedMovie");
     localStorage.removeItem("seatsId");
@@ -48,7 +56,7 @@ const SeatState = ({ children }) => {
   const checkoutData = () => {
     const data = JSON.parse(localStorage.getItem("checkout") || "[]");
     return data;
-  }
+  };
 
   return (
     <SeatContext.Provider

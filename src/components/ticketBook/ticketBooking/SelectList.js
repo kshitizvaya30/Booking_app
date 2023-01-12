@@ -29,8 +29,8 @@ const SelectList = () => {
     <div className="movie-container">
       <label>Pick a movie: </label>
       <select value={selectValue} onChange={handleChange}>
-        {movies.map((movie) => (
-          <option key={movie.id} value={movie.name} data-price={movie.price}>
+        {movies.map((movie,index) => (
+          <option key={index} value={movie.name} data-price={movie.price}>
             {movie.name} (${movie.price})
           </option>
         ))}

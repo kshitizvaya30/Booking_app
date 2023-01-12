@@ -3,11 +3,10 @@ import { Button } from "../../Buttons/Button";
 import seatContext from "../contex/seatContext";
 
 function AddToCartBtn() {
-    const { finalCart } = useContext(seatContext);
+  const { finalCart } = useContext(seatContext);
+
   const handleClick = () => {
-    console.log("clicked");
     finalCart();
-    // console.log(localStorage.getItem('checkOut'));
   };
 
   return (
@@ -16,6 +15,7 @@ function AddToCartBtn() {
         buttonSize="btn--large"
         buttonStyle="btn--outline"
         onClick={handleClick}
+        link="/cart"
       >
         Add To Cart
       </Button>

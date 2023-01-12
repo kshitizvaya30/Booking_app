@@ -8,8 +8,9 @@ function Filter({ movieData, setFiltered, activeGenre, setActiveGenre }) {
       setFiltered(movieData);
       return;
     }
+    
     const filtered = movieData.filter((movie) =>
-      movie.genre_ids.includes(activeGenre)
+      movie.showTypeId === activeGenre
     );
     setFiltered(filtered);
   }, [activeGenre]);
@@ -23,16 +24,22 @@ function Filter({ movieData, setFiltered, activeGenre, setActiveGenre }) {
         All{" "}
       </button>
       <button
-        className={activeGenre === 35 ? "active" : ""}
-        onClick={() => setActiveGenre(35)}
+        className={activeGenre === 1 ? "active" : ""}
+        onClick={() => setActiveGenre(1)}
       >
         Comedy
       </button>
       <button
-        className={activeGenre === 28 ? "active" : ""}
-        onClick={() => setActiveGenre(28)}
+        className={activeGenre === 2 ? "active" : ""}
+        onClick={() => setActiveGenre(2)}
       >
-        Action
+        Plays
+      </button>
+      <button
+        className={activeGenre === 3 ? "active" : ""}
+        onClick={() => setActiveGenre(3)}
+      >
+        Movies
       </button>
     </div>
   );

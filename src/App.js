@@ -7,6 +7,7 @@ import Products from './components/Pages/Products';
 import SignUp from './components/Pages/SignUp';
 import TicketBooking from './components/ticketBook/ticketBooking/TicketBooking';
 import Cart from './components/Cart/Cart'
+import DownloadTicket from './components/downloadTicket/DownloadTicket';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="/ticket-booking" element={<TicketBooking />}/>
         <Route path="/cart" element={<Cart />} />
+        <Route path="/downloadTicket" element={<DownloadTicket />} />
       </Routes>
     </Router>
     </>

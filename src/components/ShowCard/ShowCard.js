@@ -11,10 +11,10 @@ function ShowCard({ movie }) {
   }, []);
 
   const handleClick = () => {
-    console.log("clicked");
+    // console.log("clicked");
     const savedMovie = {
-      index: 3,
-      price: 10,
+      index: movie.id,
+      price: movie.price,
     };
     saveMovie(savedMovie);
     getData();
@@ -26,11 +26,11 @@ function ShowCard({ movie }) {
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 2 }}
+      // transition={{ duration: 2 }}
     >
-      <h2>{movie.title}</h2>
+      <h2>{movie.name}</h2>
       <img
-        src={"https://image.tmdb.org/t/p/w500" + movie.backdrop_path}
+        src={movie.img_url}
         alt={movie.id}
       />
       <Button buttonSize="btn--small" buttonStyle="btn--secondary" onClick={handleClick} link="/ticket-booking">Book Tickets</Button>
