@@ -14,7 +14,6 @@ const SeatState = ({ children }) => {
 
   useEffect(() => {
     Axios.get("http://localhost:3001/api/getShowData").then((response) => {
-      // console.log(response.data);
       initialState.movies = response.data;
     });
   }, []);
@@ -38,8 +37,6 @@ const SeatState = ({ children }) => {
 
   const finalCart = () => {
     var finalData = JSON.parse(localStorage.getItem("checkout") || "[]");
-    // console.log(JSON.parse(localStorage.getItem("selectedMovie")).price);
-    // console.log(JSON.parse(localStorage.getItem("seatsId")).length);
     let totalPrice = JSON.parse(localStorage.getItem("selectedMovie")).price * JSON.parse(localStorage.getItem("seatsId")).length;
     const checkoutObj = {
       movieName: JSON.parse(localStorage.getItem("selectedMovie")),

@@ -1,29 +1,40 @@
-import React, { useContext, useCallback } from 'react';
-import Seat from './Seat';
-import SeatContext from '../contex/seatContext';
-import './TicketBooking.css';
-
+import React, { useContext, useCallback, useEffect, useState } from "react";
+import Seat from "./Seat";
+import SeatContext from "../contex/seatContext";
+import "./TicketBooking.css";
+import Axios from "axios";
 
 const Seats = () => {
   const seats = [];
   const row = 10;
   const column = 15;
   let { addSeat, removeSeat } = useContext(SeatContext);
-  const getSeatsId = JSON.parse(localStorage.getItem('seatsId'));
+  const getSeatsId = JSON.parse(localStorage.getItem("seatsId"));
+  const [soldSeats, setSoldSeats] = useState([""]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/api/soldSeats", {
+      params: {
+        showId: JSON.parse(localStorage.getItem("selectedMovie")),
+      },
+    }).then((response) => {
+      setSoldSeats(response.data);
+    });
+  }, []);
 
   const onclickHandle = useCallback(
     (e) => {
       if (
-        e.target.classList.contains('selected') &&
-        !e.target.classList.contains('occupied')
+        e.target.classList.contains("selected") &&
+        !e.target.classList.contains("occupied")
       ) {
-        e.target.classList.remove('selected');
+        e.target.classList.remove("selected");
         removeSeat(e.target.dataset.id);
       } else if (
-        !e.target.classList.contains('selected') &&
-        !e.target.classList.contains('occupied')
+        !e.target.classList.contains("selected") &&
+        !e.target.classList.contains("occupied")
       ) {
-        e.target.classList.add('selected');
+        e.target.classList.add("selected");
         addSeat(e.target.dataset.id);
       }
     },
@@ -31,29 +42,18 @@ const Seats = () => {
   );
 
   const occupiedfunc = (i, j) => {
-    if (i === 1 && j === 2) {
+    const val = i * column + j + 1;
+    if(soldSeats.includes(val.toString())){
       return true;
-    } else if (i === 1 && j === 3) {
-      return true;
-    } else if (i === 2 && j === 0) {
-      return true;
-    } else if (i === 2 && j === 1) {
-      return true;
-    } else if (i === 3 && j === 1) {
-      return true;
-    } else if (i === 3 && j === 2) {
-      return true;
-    } else if (i === 3 && j === 3) {
-      return true;
+      
     }
-
     return false;
   };
 
   const selectedfunc = (i, j) => {
     if (getSeatsId) {
-      for(let i = 0; i < getSeatsId.length; i++) {
-        if(getSeatsId[i] === (i * column + j + 1)){
+      for (let i = 0; i < getSeatsId.length; i++) {
+        if (getSeatsId[i] === i * column + j + 1) {
           return true;
         }
       }
@@ -79,7 +79,7 @@ const Seats = () => {
   return (
     <>
       {seats.map((row, i) => (
-        <div className='row' key={i}>
+        <div className="row" key={i}>
           {row.map((column, j) => column)}
         </div>
       ))}

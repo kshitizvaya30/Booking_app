@@ -1,22 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
-import seatContext from "../ticketBook/contex/seatContext";
+import React, { useEffect, useState } from "react";
 import "./DownloadTicket.css";
 
 function DownloadTicket({ item }) {
-  //   const { checkoutData } = useContext(seatContext);
   const [data, setData] = useState([]);
 
   const [ticketNumber, setTicketNumber] = useState(0);
 
   useEffect(() => {
-    console.log(item);
     setData(item);
     setTicketNumber(GenerateARandomNumber());
   }, [data]);
 
   const GenerateARandomNumber = () => {
     var add = 1,
-      max = 12 - add; // 12 is the min safe number Math.random() can generate without it starting to pad the end with zeros.
+      max = 12 - add;
 
     if (6 > max) {
       return GenerateARandomNumber(max) + GenerateARandomNumber(6 - max);
@@ -63,14 +60,6 @@ function DownloadTicket({ item }) {
                 </>
               );
             })}
-            {/* <div className="time">
-              <p>
-                8:00 PM <span>TO</span> 11:00 PM
-              </p>
-              <p>
-                DOORS <span>@</span> 7:00 PM
-              </p>
-            </div> */}
             <p className="location">
               <span>Cinepolis Cinema</span>
               <span className="separator">

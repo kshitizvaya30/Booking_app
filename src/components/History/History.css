@@ -1,0 +1,52 @@
+.mainContainer {
+  width: 95%;
+  margin: auto;
+}
+
+.btn_container {
+    width: 95%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: right;
+  }
+
+.btnHistory {
+  border: none;
+  font-size: 1.2rem;
+  padding: 1rem 3rem;
+  color: #fff;
+  background-color: #349bf3;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.email {
+  width: 95%;
+  margin-top: 4rem;
+  /* text-align: right; */
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.email h3 {
+  font-style: 200;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  text-transform: capitalize;
+  color: #606166;
+  margin-right: 3rem;
+  align-self: center;
+}
+
+.email input {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  border: 1px solid #606166;
+}

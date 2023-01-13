@@ -1,0 +1,40 @@
+.payment-img-container {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  margin-top: 80px;
+}
+
+.payment-img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.btn-primary {
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: #349bf3;
+  color: #242424;
+  border: 1px solid var(--primary);
+  border-radius: 0.5em;
+  height: 3rem;
+  width: 20rem;
+  align-items: center;
+  /* width: ; */
+}
+
+.btn-primary:hover {
+  background-color: #0077dc;
+}
+
+.downloadBtn{
+    margin-top: 52px;
+    width: 100%;  
+    display: grid; 
+    display: flex;  
+    justify-content: center;  
+    align-items: center;   
+}
