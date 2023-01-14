@@ -6,7 +6,7 @@
 }
 
 .home,
-.services,
+.shows,
 .products,
 .sign-up {
   display: flex;
@@ -34,7 +34,7 @@
   font-size: 100px;
 }
 
-.service{
+.show{
   margin: 10% 10%;
 }
 

@@ -1,21 +1,28 @@
 import React, { useContext } from "react";
-import { Button } from "../../Buttons/Button";
+import { useNavigate } from "react-router-dom";
 import seatContext from "../contex/seatContext";
+import Button from '@mui/material/Button';
+
 
 function AddToCartBtn() {
   const { finalCart } = useContext(seatContext);
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    finalCart();
+    if(JSON.parse(localStorage.getItem('seatsId')).length ===  0){
+      alert("Please Select at least one Seat")
+    } else {
+      finalCart();
+      navigate("/cart");
+    }
   };
 
   return (
     <div className="container">
       <Button
-        buttonSize="btn--large"
-        buttonStyle="btn--outline"
+      variant="contained"
+        color="error"
         onClick={handleClick}
-        link="/cart"
       >
         Add To Cart
       </Button>

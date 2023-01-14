@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Table from "./Table";
 import "./History.css";
 import axios from "axios";
+import Button from '@mui/material/Button';
+
 
 function History() {
   const [emailAddress, setEmailAddress] = useState("");
@@ -33,10 +35,10 @@ function History() {
           />
         </div>
         <div className="btn_container">
-          <button className="btnHistory" onClick={handleClick}>Check History</button>
+          <Button className="btnHistory" color="primary" variant="contained" size="large" onClick={handleClick}>Check History</Button>
         </div>
       </form>
-      <Table data={data}/>
+      <Table data={data} email={emailAddress}/>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { ADD_SEAT, REMOVE_SEAT, GET_DATA} from "./types";
+import { ADD_SEAT, REMOVE_SEAT, GET_DATA, DELETE_DATA } from "./types";
 
 const seatReducer = (state, action) => {
   switch (action.type) {
@@ -29,8 +29,6 @@ const seatReducer = (state, action) => {
 
     case GET_DATA:
       let getSeatsId = JSON.parse(localStorage.getItem("seatsId"));
-      // console.log(getSeatsId);
-      // console.log(JSON.parse(localStorage.getItem('selectedMovie')));
       let getSelectedMovie;
       if (getSelectedMovie === null) {
         getSelectedMovie = {
@@ -51,6 +49,16 @@ const seatReducer = (state, action) => {
         selectedMovie: getSelectedMovie,
         seatsId: getSeatsId,
       };
+
+    case DELETE_DATA:
+      let cartData = JSON.parse(localStorage.getItem("checkout"));
+
+      const filteredBooking =
+        cartData !== null
+          ? cartData.filter((item) => item.id !== action.payload)
+          : [];
+      localStorage.setItem("checkout", JSON.stringify(filteredBooking));
+      return state;
 
     default:
       return state;

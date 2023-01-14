@@ -2,7 +2,7 @@ import React, { useContext, useCallback, useEffect, useState } from "react";
 import Seat from "./Seat";
 import SeatContext from "../contex/seatContext";
 import "./TicketBooking.css";
-import Axios from "axios";
+import axios from "axios";
 
 const Seats = () => {
   const seats = [];
@@ -13,7 +13,7 @@ const Seats = () => {
   const [soldSeats, setSoldSeats] = useState([""]);
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/soldSeats", {
+    axios.get("http://localhost:3001/api/soldSeats", {
       params: {
         showId: JSON.parse(localStorage.getItem("selectedMovie")),
       },

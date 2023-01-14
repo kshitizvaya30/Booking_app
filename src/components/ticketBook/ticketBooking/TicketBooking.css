@@ -118,7 +118,7 @@
 .container .screen {
   background-color: #fff;
   height: 100px;
-  /* width: 200px; */
+  width: 100%;
   margin: 1rem 0;
   -webkit-transform: rotateX(-45deg);
   transform: rotateX(-45deg);
