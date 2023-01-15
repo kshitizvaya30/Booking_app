@@ -4,6 +4,9 @@ import axios from "axios";
 import { Button } from "@material-ui/core";
 import CancelIcon from "@mui/icons-material/Cancel";
 import moment from 'moment';
+import DownloadIcon from '@mui/icons-material/Download';
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
 
 function Table({ data, email }) {
@@ -11,6 +14,18 @@ function Table({ data, email }) {
   useEffect(() => {
     setItem(data);
   }, [data]);
+
+  const downloadPdf = (row) => {
+    const doc = new jsPDF();
+    doc.text("Ticket Details", 20, 10);
+
+    autoTable(doc, {
+      theme:"grid",
+      head:[["ID", "Name","Seats","Price","Total Price","Email","Timings"]],
+      body : [[row.tableData.id+1,row.name,row.seats,row.price,row.TotalPrice,row.email,row.timings]]
+    })
+    doc.save("ticket.pdf");
+  };
 
   const columns = [
     { title: "Name", field: "name", width: 150 },
@@ -79,6 +94,16 @@ function Table({ data, email }) {
             onClick: (event, rowData) => {
               cancelBooking(rowData.id);
               alert("Ticket Cancelled : " + rowData.name);
+            },
+          },
+          {
+            icon: () => (
+              <DownloadIcon />
+            ),
+            tooltip: "DownloadTicket",
+            onClick: (event, rowData) => {
+              downloadPdf(rowData);
+              alert("Ticket Downloaded : " + rowData.name);
             },
           },
         ]}
