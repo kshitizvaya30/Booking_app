@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import MaterialTable from "material-table";
 import "./cartSection.css";
-import seatContext from "../ticketBook/contex/seatContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 import { alpha } from "@material-ui/core/styles";
+import seatContext from "../contex/seatContext";
 
 function CartSection() {
   const columns = [
-    { title: "ID", field: "tableData.id" },
+    { title: "ID", field: "tableData.id" ,render: (rowData) => rowData.tableData.id+1},
     { title: "Name", field: "movieName.name" },
-    { title: "Seats", field: "seatsSelected" },
+    { title: "Seats", field: "seatsSelected" , render: (rowData) => JSON.stringify(rowData.seatsSelected) },
     { title: "Price", field: "movieName.price" },
     { title: "Total Price", field: "totalPrice" },
   ];
@@ -40,17 +40,22 @@ function CartSection() {
     doc.text("Ticket Details", 20, 10);
 
     autoTable(doc, {
-      columns: columns.map((col) => ({ ...col, datakey: col.field })),
-      body: item,
-    });
+      theme:"grid",
+      head:[["ID", "Name","Seats","Price","Total Price"]],
+      body : item.map((row) => {
+        return [row.tableData.id+1,row.movieName.name,row.seatsSelected,row.movieName.price,row.totalPrice]
+      })
+    })
+    console.log(item);
     doc.save("ticket.pdf");
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     if (item.length >= 1) {
       if (emailAddress !== "") {
         axios
-          .post("http://localhost:3001/api/bookingData", {
+          .post("https://booking-app-server.onrender.com/api/bookingData", {
             item: item,
             emailAddress: emailAddress,
           })

@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
-import ShowCard from "../ShowCard/ShowCard";
 import Filter from "../ShowCard/Filter/Filter";
 import { motion, AnimatePresence } from "framer-motion";
-import seatContext from "../ticketBook/contex/seatContext";
+import seatContext from "../contex/seatContext";
 import MaterialCard from "../ShowCard/MaterialCard";
 
 function Shows() {
@@ -14,6 +13,7 @@ function Shows() {
   const [activeGenre, setActiveGenre] = useState(0);
 
   useEffect(() => {
+    console.log(movies);
     setMovieData(movies);
     setFiltered(movies);
     localStorage.removeItem('seatsId');
@@ -33,7 +33,6 @@ function Shows() {
             return (
               <div>
                 <MaterialCard key={index} movie={movie}/>
-                {/* <ShowCard key={index} movie={movie}/> */}
               </div>
             );
           })}

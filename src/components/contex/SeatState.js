@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer} from "react";
 import SeatContext from "./seatContext";
 import seatReducer from "./seatReducer";
 import axios from "axios";
@@ -14,7 +14,7 @@ const SeatState = ({ children }) => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/getShowData").then((response) => {
+    axios.get("https://booking-app-server.onrender.com/api/getShowData").then((response) => {
       initialState.movies = response.data;
     });
   }, []);

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import seatContext from "../contex/seatContext";
+import seatContext from "../../contex/seatContext";
 import Button from '@mui/material/Button';
 
 

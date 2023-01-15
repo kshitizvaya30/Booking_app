@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useEffect, useState } from "react";
 import Seat from "./Seat";
-import SeatContext from "../contex/seatContext";
+import SeatContext from "../../contex/seatContext";
 import "./TicketBooking.css";
 import axios from "axios";
 
@@ -13,7 +13,7 @@ const Seats = () => {
   const [soldSeats, setSoldSeats] = useState([""]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/soldSeats", {
+    axios.get("https://booking-app-server.onrender.com/api/soldSeats", {
       params: {
         showId: JSON.parse(localStorage.getItem("selectedMovie")),
       },
@@ -42,7 +42,7 @@ const Seats = () => {
   );
 
   const occupiedfunc = (i, j) => {
-    const val = i * column + j + 1;
+    const val = String.fromCharCode(i+65)+"-"+ j;
     if(soldSeats.includes(val.toString())){
       return true;
       
@@ -53,7 +53,7 @@ const Seats = () => {
   const selectedfunc = (i, j) => {
     if (getSeatsId) {
       for (let i = 0; i < getSeatsId.length; i++) {
-        if (getSeatsId[i] === i * column + j + 1) {
+        if (getSeatsId[i] === String.fromCharCode(i+65)+"-"+ j) {
           return true;
         }
       }
@@ -66,8 +66,8 @@ const Seats = () => {
     for (let j = 0; j < column; j++) {
       seats[i][j] = (
         <Seat
-          id={i * column + j + 1}
-          key={i * column + j + 1}
+          id={String.fromCharCode(i+65)+"-"+ j}
+          key={String.fromCharCode(i+65)+"-"+ j}
           occupied={occupiedfunc(i, j)}
           selected={selectedfunc(i, j)}
           onclick={onclickHandle}

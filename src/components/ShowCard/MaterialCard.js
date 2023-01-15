@@ -4,9 +4,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import seatContext from "../ticketBook/contex/seatContext";
 import { Link } from "react-router-dom";
-import { easeIn, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import seatContext from "../contex/seatContext";
 
 function MaterialCard({ movie }) {
   const { saveMovie, getData } = useContext(seatContext);
@@ -34,9 +34,10 @@ function MaterialCard({ movie }) {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="250"
             image={movie.img_url}
             alt={movie.id}
+            sx={{ objectFit: "contain" }}
           />
           <CardContent>
             <Typography gutterBottom variant="h8" component="div">

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import SeatContext from '../contex/seatContext';
+import SeatContext from '../../contex/seatContext';
 import './TicketBooking.css'
 
 

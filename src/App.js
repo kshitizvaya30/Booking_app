@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Pages/Home';
 import Shows from './components/Pages/Shows';
 import History from './components/History/History';
-import TicketBooking from './components/ticketBook/ticketBooking/TicketBooking';
 import DownloadTicket from './components/downloadTicket/DownloadTicket';
 import Checkout from './components/Checkout/Checkout';
 import CartSection from './components/Cart/CartSection';
+import TicketBookingPage from './components/Pages/TicketBookingPage';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/shows" element={<Shows/>}/>
         <Route path="/history" element={<History/>}/>
-        <Route path="/ticket-booking" element={<TicketBooking />}/>
+        <Route path="/ticket-booking" element={<TicketBookingPage />}/>
         <Route path="/cart" element={<CartSection />} />
         <Route path="/downloadTicket" element={<DownloadTicket />} />
         <Route path="/checkout-page" element={<Checkout />}  />

@@ -3,6 +3,8 @@ import MaterialTable from "material-table";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 import CancelIcon from "@mui/icons-material/Cancel";
+import moment from 'moment';
+
 
 function Table({ data, email }) {
   const [item, setItem] = useState([]);
@@ -28,7 +30,7 @@ function Table({ data, email }) {
       type: "currency",
       currencySetting: { currencyCode: "INR" },
     },
-    { title: "Date", field: "date", width: 150 },
+    { title: "Date", field: "date", width: 150,render: (rowData) => moment(rowData.date).format("D MMMM YYYY")}, 
     {
       title: "Status",
       field: "status",
@@ -39,7 +41,7 @@ function Table({ data, email }) {
 
   const cancelBooking = (id) => {
     axios
-      .put(`http://localhost:3001/api/cancelTickets`, {
+      .put(`https://booking-app-server.onrender.com/api/cancelTickets`, {
         id: id,
         email: email,
       })
