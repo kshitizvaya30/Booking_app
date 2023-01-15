@@ -72,13 +72,6 @@ function Table({ data, email }) {
         data={item}
         columns={columns}
         options={{ sorting: true, search: true, actionsColumnIndex: -1 }}
-        // editable={{
-        //   onRowDelete: (row) =>
-        //     new Promise((resolve, reject) => {
-        //       cancelBooking(row.id);
-        //       resolve();
-        //     }),
-        // }}
         actions={[
           {
             icon: () => (
