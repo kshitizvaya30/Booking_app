@@ -5,11 +5,12 @@ import axios from "axios";
 import { Grid } from "@material-ui/core";
 
 function Cards() {
-  const [trendingShows, setTrendingShows] = useState([""]);
+  const [trendingShows, setTrendingShows] = useState([{}]);
 
   useEffect(() => {
     axios.get("https://booking-app-server.onrender.com/api/getTrendingShows").then((response) => {
-      console.log(response.data);
+      // console.log(typeof(response.data));
+      // console.log(response.data)
       setTrendingShows(response.data);
     });
   }, []);

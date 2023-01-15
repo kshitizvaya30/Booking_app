@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer} from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import SeatContext from "./seatContext";
 import seatReducer from "./seatReducer";
 import axios from "axios";
