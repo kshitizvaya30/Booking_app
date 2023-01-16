@@ -40,7 +40,7 @@ The current system lacks a login feature, allowing users to view their ticket hi
 The user interface (UI) can be further enhanced by improving the layout of cards, adapting the seat design for various devices, and incorporating additional features.
 A PDF functionality has been added to the system, however, the design of the generated ticket can be improved by incorporating images and other visual elements.
 
-##Deployment Issues
+### Deployment Issues
 There could be various reasons for issues while loading a website, including issues with the free version of the render app for backend deployment. It is possible that the free version may not be providing data properly. If you are experiencing issues, it is best to contact me about the issue.
 Email - kshitizvaya12@gmail.com
 
