@@ -1,3 +1,6 @@
+## Video 
+https://user-images.githubusercontent.com/75470682/212621223-971e6dfb-b168-4751-9d8c-eb696d9c521d.mp4
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -32,8 +35,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 Join me in this video as we dive into the inner workings of our latest project, a web application built using React JS and Node. I will be explaining the technical concepts and the architecture of the project. We'll also demonstrate some of the key features of the application and how they are implemented. By the end of the video, you will have a good understanding of how this project functions and the technology behind it. "
 
 
-## Video 
-https://user-images.githubusercontent.com/75470682/212621223-971e6dfb-b168-4751-9d8c-eb696d9c521d.mp4
+
 
 The current system lacks a login feature, allowing users to view their ticket history by simply entering their email address. However, with the implementation of JSON Web Tokens (JWT), an access token will be sent to the backend for verification. Upon successful validation, the email within the token's subject will be used to retrieve the corresponding ticket details.
 
